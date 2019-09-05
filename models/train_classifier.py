@@ -20,7 +20,9 @@ from sklearn.ensemble import AdaBoostClassifier
 
 
 def load_data(database_filepath):
-
+    """
+    Load the filepath and return X,Y and category names
+    """
     engine = create_engine('sqlite:///{}'.format(database_filepath))
     df = pd.read_sql('DisasterResponse', con =engine)
 
