@@ -34,7 +34,9 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
-
+    """
+    Tokenize the input text and return a cleaned text
+    """
     text = re.sub(r"[^a-zA-Z0-9]"," ",text.lower())
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
@@ -48,6 +50,9 @@ def tokenize(text):
 
 
 def build_model():
+    """
+    Build a ML pipeline using RandomForestClassifier and GridSearchCV
+    """
     pipeline = Pipeline([
                 ('vect',CountVectorizer(tokenizer = tokenize)),
                 ('tfidf',TfidfTransformer()),
@@ -62,6 +67,9 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """
+    Evaluate model using the test data
+    """
 
     Y_pred = model.predict(X_test)
 
@@ -72,7 +80,9 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
-
+    """
+    Save the model using pickle
+    """
     pickle.dump(model, open(model_filepath, 'wb'))
 
 
